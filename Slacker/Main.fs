@@ -59,15 +59,15 @@ module API =
         | "help"::_ -> help
         | _ -> failwithf "No command; passed args = %A" paramList
 
-    let rec pluckCommand l =
+    let rec pluckCommandText l =
         match l with
         | [] -> failwith "No command sent"
-        | ("command", x)::_ -> x
-        | _::tail -> pluckCommand tail
+        | ("text", x)::_ -> x
+        | _::tail -> pluckCommandText tail
     
     let ParseRequest ctx =
-        let l = ctx.Request.Post.ToList() |> pluckCommand
-        Seq.toList(l.Split([|' '|], 3)) |> List.tail
+        let l = ctx.Request.Post.ToList() |> pluckCommandText
+        Seq.toList(l.Split([|' '|], 2))
 
 
     type SlackResponse = { text : string ; response_type : string }
