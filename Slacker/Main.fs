@@ -50,15 +50,14 @@ module API =
     type Response = PublicResponse of string | PrivateResponse of string
 
 
-    let help args : Response = PrivateResponse "YOU NEED HELP!"
+    let help : Response = PrivateResponse "YOU NEED HELP!"
     let helloworld args : Response = PublicResponse "foo"
 
     let ProcessRequest paramList =
-        let command::args = paramList
-        match command with
-        | "helloworld" -> helloworld args
-        | "help" -> help args
-        | _ -> failwith "No command"
+        match paramList with
+        | "helloworld"::args -> helloworld args
+        | "help"::_ -> help
+        | _ -> failwithf "No command; passed args = %A" paramList
 
     let rec pluckCommand l =
         match l with
