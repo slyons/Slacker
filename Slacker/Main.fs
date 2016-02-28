@@ -56,8 +56,8 @@ module API =
     let ProcessRequest paramList =
         let command::args = paramList
         match command with
-        | "/helloworld" -> helloworld args
-        | "/help" -> help args
+        | "helloworld" -> helloworld args
+        | "help" -> help args
         | _ -> failwith "No command"
 
     let rec pluckCommand l =
@@ -68,7 +68,7 @@ module API =
     
     let ParseRequest ctx =
         let l = ctx.Request.Post.ToList() |> pluckCommand
-        Seq.toList(l.Split([|' '|], 2))
+        Seq.toList(l.Split([|' '|], 3)) |> List.tail
 
 
     type SlackResponse = { text : string ; response_type : string }
