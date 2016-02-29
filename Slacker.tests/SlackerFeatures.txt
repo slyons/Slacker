@@ -1,0 +1,6 @@
+﻿Feature: Slacker bot should greet me when given the hello command
+
+Scenario 1: Bot greets me
+	Given a slacker bot
+	When I issue command "helloworld"
+	Then it should reply "Hello, World!"

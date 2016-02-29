@@ -3,41 +3,56 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C9D990B-178A-418E-88DB-E2E837065387}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Slacker.Console</RootNamespace>
-    <AssemblyName>Slacker.Console</AssemblyName>
+    <ProjectGuid>{9EACAFCE-879C-47C3-B047-5B03BAFDE0E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Slacker.tests</RootNamespace>
+    <AssemblyName>Slacker.tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <Externalconsole>true</Externalconsole>
-    <Optimize>true</Optimize>
-    <DefineConstants>
-    </DefineConstants>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>
+    </PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <Externalconsole>true</Externalconsole>
+    <DebugSymbols>false</DebugSymbols>
     <Optimize>true</Optimize>
-    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Release</OutputPath>
     <DefineConstants>
     </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <ConsolePause>false</ConsolePause>
+    <GenerateTailCalls>true</GenerateTailCalls>
+    <PlatformTarget>
+    </PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="FSharp.Core" />
+    <Reference Include="TickSpec">
+      <HintPath>..\packages\TickSpec.1.0.1.1\Lib\net40\TickSpec.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Program.fs" />
+    <Compile Include="Fixtures.fs" />
+    <Compile Include="StockStepDefinitions.fs" />
+    <Compile Include="SlackerStepDefinitions.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="StockFeature.txt" />
+    <None Include="SlackerFeatures.txt" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Slacker\Slacker.fsproj">
       <Project>{F306C10A-3D2D-4CFC-9DD5-FA0424FD01A7}</Project>
